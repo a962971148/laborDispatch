@@ -29,8 +29,8 @@ public class IntialDescritionController {
     IntialDescriptionService intialDescriptionService;
 
     @PostMapping("/add")
-    public ResultVo add(@RequestBody IntialDescription intialDescription) {
-        intialDescriptionService.save(intialDescription);
+    public ResultVo add(@RequestBody IntialDescriptionDto dto) {
+        intialDescriptionService.save(dto);
         return ResultVo.success();
     }
 
@@ -39,6 +39,25 @@ public class IntialDescritionController {
         List<IntialDescriptionVo> list = intialDescriptionService.list(dto);
         return ResultVo.success(list);
     }
+
+    @PostMapping("/count")
+    public ResultVo count(@RequestBody IntialDescriptionDto intialDescriptionDto) {
+        Integer vo = intialDescriptionService.count(intialDescriptionDto);
+        return ResultVo.success(vo);
+    }
+
+    @PostMapping("/update")
+    public ResultVo update(@RequestBody IntialDescriptionDto dto) {
+        intialDescriptionService.update(dto);
+        return ResultVo.success();
+    }
+
+    @PostMapping("/delete")
+    public ResultVo delete(@RequestBody IntialDescriptionDto dto) {
+        intialDescriptionService.delete(dto);
+        return ResultVo.success();
+    }
+
 
 
 }

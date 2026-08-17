@@ -9,7 +9,13 @@ import java.util.List;
 
 
 public interface IntialDescriptionService {
-    void save(IntialDescription intialDescription);
+    void save(IntialDescriptionDto intialDescription);
 
     List<IntialDescriptionVo> list(IntialDescriptionDto dto);
+
+    Integer count(IntialDescriptionDto intialDescriptionDto);
+
+    void update(IntialDescriptionDto dto);
+
+    void delete(IntialDescriptionDto dto);
 }
