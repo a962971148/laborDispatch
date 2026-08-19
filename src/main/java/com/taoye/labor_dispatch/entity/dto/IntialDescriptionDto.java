@@ -1,5 +1,7 @@
 package com.taoye.labor_dispatch.entity.dto;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +31,9 @@ public class IntialDescriptionDto {
      * @mbg.generated Tue Apr 14 22:10:20 CST 2026
      */
     private String intialDescription;
+
+
+    private Long upstreamLaborCompanyId;
 
     /**
      *
@@ -279,5 +284,13 @@ public class IntialDescriptionDto {
 
     public void setIds(List<Long> ids) {
         this.ids = ids;
+    }
+
+    public Long getUpstreamLaborCompanyId() {
+        return upstreamLaborCompanyId;
+    }
+
+    public void setUpstreamLaborCompanyId(Long upstreamLaborCompanyId) {
+        this.upstreamLaborCompanyId = upstreamLaborCompanyId;
     }
 }

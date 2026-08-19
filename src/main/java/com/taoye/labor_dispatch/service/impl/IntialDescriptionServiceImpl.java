@@ -40,6 +40,7 @@ public class IntialDescriptionServiceImpl implements IntialDescriptionService {
         IntialDescription intialDescription = new IntialDescription();
         intialDescription.setIntialDescription(dto.getIntialDescription());
         intialDescription.setWechatNumber(dto.getWechatNumber());
+        intialDescription.setUpstreamLaborCompanyId(dto.getUpstreamLaborCompanyId());
         intialDescription.setGroupAffiliation(dto.getGroupAffiliation());
         intialDescriptionMapper.insertSelective(intialDescription);
         if(!CollectionUtils.isEmpty(dto.getTagInfoList())){

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taoye.labor_dispatch.mapper.OrderDetailMapper">
+
+  <resultMap id="BaseResultMap" type="com.taoye.labor_dispatch.entity.OrderDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="work_date" jdbcType="DATE" property="workDate" />
+    <result column="work_start_time" jdbcType="TIME" property="workStartTime" />
+    <result column="work_end_time" jdbcType="TIME" property="workEndTime" />
+    <result column="rest_duration" jdbcType="INTEGER" property="restDuration" />
+    <result column="extra_deduction" jdbcType="DECIMAL" property="extraDeduction" />
+    <result column="hourly_wage" jdbcType="DECIMAL" property="hourlyWage" />
+    <result column="daily_wage" jdbcType="DECIMAL" property="dailyWage" />
+    <result column="is_settled" jdbcType="TINYINT" property="isSettled" />
+    <result column="profit" jdbcType="DECIMAL" property="profit" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+
+  <resultMap id="OrderDetailVo" type="com.taoye.labor_dispatch.entity.vo.OrderDetailVo" extends="BaseResultMap">
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, order_id, user_id, work_date, work_start_time, work_end_time, rest_duration,
+    extra_deduction, hourly_wage, daily_wage, is_settled, profit, create_time, update_time, is_delete
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <insert id="insertSelective" parameterType="com.taoye.labor_dispatch.entity.OrderDetail" useGeneratedKeys="true" keyProperty="id">
+    insert into order_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="workDate != null">
+        work_date,
+      </if>
+      <if test="workStartTime != null">
+        work_start_time,
+      </if>
+      <if test="workEndTime != null">
+        work_end_time,
+      </if>
+      <if test="restDuration != null">
+        rest_duration,
+      </if>
+      <if test="extraDeduction != null">
+        extra_deduction,
+      </if>
+      <if test="hourlyWage != null">
+        hourly_wage,
+      </if>
+      <if test="dailyWage != null">
+        daily_wage,
+      </if>
+      <if test="isSettled != null">
+        is_settled,
+      </if>
+      <if test="profit != null">
+        profit,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="workDate != null">
+        #{workDate,jdbcType=DATE},
+      </if>
+      <if test="workStartTime != null">
+        #{workStartTime,jdbcType=TIME},
+      </if>
+      <if test="workEndTime != null">
+        #{workEndTime,jdbcType=TIME},
+      </if>
+      <if test="restDuration != null">
+        #{restDuration,jdbcType=INTEGER},
+      </if>
+      <if test="extraDeduction != null">
+        #{extraDeduction,jdbcType=DECIMAL},
+      </if>
+      <if test="hourlyWage != null">
+        #{hourlyWage,jdbcType=DECIMAL},
+      </if>
+      <if test="dailyWage != null">
+        #{dailyWage,jdbcType=DECIMAL},
+      </if>
+      <if test="isSettled != null">
+        #{isSettled,jdbcType=TINYINT},
+      </if>
+      <if test="profit != null">
+        #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.taoye.labor_dispatch.entity.OrderDetail">
+    update order_detail
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="workDate != null">
+        work_date = #{workDate,jdbcType=DATE},
+      </if>
+      <if test="workStartTime != null">
+        work_start_time = #{workStartTime,jdbcType=TIME},
+      </if>
+      <if test="workEndTime != null">
+        work_end_time = #{workEndTime,jdbcType=TIME},
+      </if>
+      <if test="restDuration != null">
+        rest_duration = #{restDuration,jdbcType=INTEGER},
+      </if>
+      <if test="extraDeduction != null">
+        extra_deduction = #{extraDeduction,jdbcType=DECIMAL},
+      </if>
+      <if test="hourlyWage != null">
+        hourly_wage = #{hourlyWage,jdbcType=DECIMAL},
+      </if>
+      <if test="dailyWage != null">
+        daily_wage = #{dailyWage,jdbcType=DECIMAL},
+      </if>
+      <if test="isSettled != null">
+        is_settled = #{isSettled,jdbcType=TINYINT},
+      </if>
+      <if test="profit != null">
+        profit = #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="query" resultMap="OrderDetailVo">
+    select
+    <include refid="Base_Column_List" />
+    from order_detail
+    <include refid="query_where" />
+    ORDER BY create_time DESC
+  </select>
+
+  <sql id="query_where">
+    <where>
+      <if test="id != null">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="orderId != null">
+        and order_id = #{orderId,jdbcType=BIGINT}
+      </if>
+      <if test="userId != null">
+        and user_id = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="workDate != null">
+        and work_date = #{workDate,jdbcType=DATE}
+      </if>
+      <if test="isSettled != null">
+        and is_settled = #{isSettled,jdbcType=TINYINT}
+      </if>
+      <if test="isDelete != null">
+        and is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+    </where>
+  </sql>
+
+  <select id="queryCount" resultType="java.lang.Integer">
+    select count(*)
+    from order_detail
+    <include refid="query_where" />
+  </select>
+
+</mapper>

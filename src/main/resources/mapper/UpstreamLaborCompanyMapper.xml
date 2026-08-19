@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taoye.labor_dispatch.mapper.UpstreamLaborCompanyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.taoye.labor_dispatch.entity.UpstreamLaborCompany">
+        <id column="id" property="id" />
+        <result column="wechat_number" property="wechatNumber" />
+        <result column="phone" property="phone" />
+        <result column="company_name" property="companyName" />
+        <result column="contact" property="contact" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="is_delete" property="isDelete" />
+        <result column="is_show" property="isShow" />
+    </resultMap>
+
+  <resultMap id="UpstreamLaborCompanyVo" type="com.taoye.labor_dispatch.entity.vo.UpstreamLaborCompanyVo" extends="BaseResultMap">
+      <id column="id" property="id" />
+      <result column="wechat_number" property="wechatNumber" />
+      <result column="phone" property="phone" />
+      <result column="company_name" property="companyName" />
+      <result column="contact" property="contact" />
+      <result column="create_time" property="createTime" />
+      <result column="update_time" property="updateTime" />
+      <result column="is_delete" property="isDelete" />
+      <result column="is_show" property="isShow" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, wechat_number, phone, company_name, contact, create_time, update_time, is_delete   ,is_show
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from upstream_labor_company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <insert id="insertSelective" parameterType="com.taoye.labor_dispatch.entity.UpstreamLaborCompany" useGeneratedKeys="true" keyProperty="id">
+    insert into upstream_labor_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="wechatNumber != null">
+        wechat_number,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="wechatNumber != null">
+        #{wechatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.taoye.labor_dispatch.entity.UpstreamLaborCompany">
+    update upstream_labor_company
+    <set>
+      <if test="wechatNumber != null">
+        wechat_number = #{wechatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="query" resultMap="UpstreamLaborCompanyVo">
+    select
+    <include refid="Base_Column_List" />
+    from upstream_labor_company
+    <include refid="query_where" />
+    ORDER BY create_time DESC
+  </select>
+
+  <sql id="query_where">
+    <where>
+      <if test="id != null">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="wechatNumber != null and wechatNumber != ''">
+        and wechat_number = #{wechatNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null and phone != ''">
+        and phone = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="companyName != null and companyName != ''">
+        and company_name = #{companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="contact != null and contact != ''">
+        and contact = #{contact,jdbcType=VARCHAR}
+      </if>
+      <if test="isDelete != null">
+        and is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+
+      <if test="isShow != null">
+        and is_show = #{isShow,jdbcType=TINYINT}
+      </if>
+
+    </where>
+  </sql>
+
+  <select id="queryCount" resultType="java.lang.Integer">
+    select count(*)
+    from upstream_labor_company
+    <include refid="query_where" />
+  </select>
+
+</mapper>

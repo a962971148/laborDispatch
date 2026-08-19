@@ -24,11 +24,7 @@ public class MpGenerator {
                     builder.author("taoye")
                             // java输出目录
                             .outputDir(System.getProperty("user.dir") + "/src/main/java")
-                            .disableOpenDir()
-                            ;
-
-                            // 不需要swagger就注释掉
-//                            .enableSwagger();
+                            .disableOpenDir();
                 })
 
                 // 包配置
@@ -46,7 +42,7 @@ public class MpGenerator {
                 // 策略配置
                 .strategyConfig(builder -> {
                     // ==========填写需要生成的表名，多张逗号分隔==========
-                    builder.addInclude("upstream_labor_company")
+                    builder.addInclude("intial_description")
 
                             // 实体类配置
                             .entityBuilder()
@@ -57,10 +53,10 @@ public class MpGenerator {
 
                             // Mapper
                             .mapperBuilder()
-                            .enableMapperAnnotation()
                             .enableBaseResultMap()
                             .enableBaseColumnList()
-                            .enableFileOverride();
+                            .enableFileOverride()
+                            ;
 
 //                            // Service
 //                            .serviceBuilder()

@@ -10,7 +10,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ * 上游劳务公司表
  * </p>
  *
  * @author taoye
@@ -18,33 +18,60 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("intial_description")
-public class IntialDescription {
+@TableName("upstream_labor_company")
+public class UpstreamLaborCompany {
 
+    /**
+     * 主键
+     */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @TableField("intial_description")
-    private String intialDescription;
-
-    @TableField("group_affiliation")
-    private String groupAffiliation;
-
-    @TableField("upstream_labor_company_id")
-    private Long upstreamLaborCompanyId;
-
+    /**
+     * 微信号
+     */
     @TableField("wechat_number")
     private String wechatNumber;
 
-    @TableField("remark")
-    private String remark;
+    /**
+     * 电话号码
+     */
+    @TableField("phone")
+    private String phone;
 
+    /**
+     * 公司名称
+     */
+    @TableField("company_name")
+    private String companyName;
+
+    /**
+     * 联系人
+     */
+    @TableField("contact")
+    private String contact;
+
+    /**
+     * 创建时间
+     */
     @TableField("create_time")
     private LocalDateTime createTime;
 
+    /**
+     * 修改时间
+     */
     @TableField("update_time")
     private LocalDateTime updateTime;
 
+    /**
+     * 是否删除：0-未删除，1-已删除
+     */
     @TableField("is_delete")
     private Byte isDelete;
+
+    /**
+     * 是否显示
+     */
+    @TableField("is_show")
+    private Byte isShow;
 }
