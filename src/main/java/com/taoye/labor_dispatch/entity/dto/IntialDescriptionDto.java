@@ -55,6 +55,7 @@ public class IntialDescriptionDto {
 
     private String groupAffiliation;
 
+    private String remark;
 
     private String createTimeFrom;
 
@@ -82,6 +83,188 @@ public class IntialDescriptionDto {
 
     private Integer pageNum = 1;   // 默认第1页
     private Integer pageSize = 10;
+
+    public String getWechatName() {
+        return wechatName;
+    }
+
+    public void setWechatName(String wechatName) {
+        this.wechatName = wechatName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
+
+    public Byte getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(Byte jobType) {
+        this.jobType = jobType;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getWelfare() {
+        return welfare;
+    }
+
+    public void setWelfare(String welfare) {
+        this.welfare = welfare;
+    }
+
+    public String getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
+    }
+
+    public String getDuty() {
+        return duty;
+    }
+
+    public void setDuty(String duty) {
+        this.duty = duty;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    /**
+     * 微信号
+     */
+    @TableField("wechat_name")
+    private String wechatName;
+
+    /**
+     * 公司名
+     */
+    @TableField("company_name")
+    private String companyName;
+
+    /**
+     * 岗位名称
+     */
+    @TableField("job_name")
+    private String jobName;
+
+    /**
+     * 薪资范围
+     */
+    @TableField("salary")
+    private String salary;
+
+    /**
+     * 工作地点，多个逗号分隔
+     */
+    @TableField("location")
+    private String location;
+
+    /**
+     * 经验要求
+     */
+    @TableField("experience")
+    private String experience;
+
+    /**
+     * 学历要求
+     */
+    @TableField("education")
+    private String education;
+
+    /**
+     * 岗位职责
+     */
+    @TableField("duty")
+    private String duty;
+
+    /**
+     * 任职要求
+     */
+    @TableField("requirement")
+    private String requirement;
+
+    /**
+     * 福利待遇
+     */
+    @TableField("welfare")
+    private String welfare;
+
+    /**
+     * 联系人
+     */
+    @TableField("contact")
+    private String contact;
+
+    /**
+     * 联系电话
+     */
+    @TableField("phone")
+    private String phone;
+
+    /**
+     * 类型：1日结 2小时工 3工作介绍 4进厂
+     */
+    @TableField("job_type")
+    private Byte jobType;
 
     public IntialDescriptionDto() {
     }
@@ -292,5 +475,13 @@ public class IntialDescriptionDto {
 
     public void setUpstreamLaborCompanyId(Long upstreamLaborCompanyId) {
         this.upstreamLaborCompanyId = upstreamLaborCompanyId;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

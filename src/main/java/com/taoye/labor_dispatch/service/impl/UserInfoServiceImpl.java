@@ -51,6 +51,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfo.setNativePlace(userInfoDto.getNativePlace());
         userInfo.setIntentionLevel(userInfoDto.getIntentionLevel());
         userInfo.setWorkAttitude(userInfoDto.getWorkAttitude());
+        userInfo.setRemark(userInfoDto.getRemark());
         userInfoMapper.insertSelective(userInfo);
         if(!CollectionUtils.isEmpty(userInfoDto.getRemarkList())){
             userInfoDto.getRemarkList().forEach(item ->{

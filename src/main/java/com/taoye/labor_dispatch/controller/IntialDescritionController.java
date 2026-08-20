@@ -40,6 +40,12 @@ public class IntialDescritionController {
         return ResultVo.success(list);
     }
 
+    @PostMapping("/analysis_intial_descrition")
+    public ResultVo<IntialDescriptionVo> analysisIntialDescrition(@RequestBody IntialDescriptionDto dto) {
+        IntialDescriptionVo vo = intialDescriptionService.analysisIntialDescrition(dto);
+        return ResultVo.success(vo);
+    }
+
     @PostMapping("/count")
     public ResultVo count(@RequestBody IntialDescriptionDto intialDescriptionDto) {
         Integer vo = intialDescriptionService.count(intialDescriptionDto);

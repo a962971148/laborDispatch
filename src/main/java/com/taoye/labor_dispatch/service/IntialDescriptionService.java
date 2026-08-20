@@ -18,4 +18,6 @@ public interface IntialDescriptionService {
     void update(IntialDescriptionDto dto);
 
     void delete(IntialDescriptionDto dto);
+
+    IntialDescriptionVo analysisIntialDescrition(IntialDescriptionDto dto);
 }

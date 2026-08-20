@@ -9,6 +9,7 @@ import com.taoye.labor_dispatch.mapper.IntialDescriptionMapper;
 import com.taoye.labor_dispatch.mapper.TagDescriptionRefMapper;
 import com.taoye.labor_dispatch.mapper.TagInfoMapper;
 import com.taoye.labor_dispatch.service.IntialDescriptionService;
+import com.taoye.labor_dispatch.service.JobParseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -35,6 +36,9 @@ public class IntialDescriptionServiceImpl implements IntialDescriptionService {
     @Autowired
     TagInfoMapper tagInfoMapper;
 
+    @Autowired
+    JobParseService jobParseService;
+
     @Override
     public void save(IntialDescriptionDto dto) {
         IntialDescription intialDescription = new IntialDescription();
@@ -42,7 +46,24 @@ public class IntialDescriptionServiceImpl implements IntialDescriptionService {
         intialDescription.setWechatNumber(dto.getWechatNumber());
         intialDescription.setUpstreamLaborCompanyId(dto.getUpstreamLaborCompanyId());
         intialDescription.setGroupAffiliation(dto.getGroupAffiliation());
-        intialDescriptionMapper.insertSelective(intialDescription);
+
+        // 补齐新增AI解析出来的全部字段
+        intialDescription.setWechatName(dto.getWechatName());
+        intialDescription.setCompanyName(dto.getCompanyName());
+        intialDescription.setJobName(dto.getJobName());
+        intialDescription.setSalary(dto.getSalary());
+        intialDescription.setLocation(dto.getLocation());
+        intialDescription.setExperience(dto.getExperience());
+        intialDescription.setEducation(dto.getEducation());
+        intialDescription.setDuty(dto.getDuty());
+        intialDescription.setRequirement(dto.getRequirement());
+        intialDescription.setWelfare(dto.getWelfare());
+        intialDescription.setContact(dto.getContact());
+        intialDescription.setPhone(dto.getPhone());
+        intialDescription.setJobType(dto.getJobType());
+        intialDescription.setRemark(dto.getRemark());
+
+        intialDescriptionMapper.insert(intialDescription);
         if(!CollectionUtils.isEmpty(dto.getTagInfoList())){
             dto.getTagInfoList().forEach(item ->{
                 TagDescriptionRef tagDescriptionRef = new TagDescriptionRef();
@@ -56,7 +77,6 @@ public class IntialDescriptionServiceImpl implements IntialDescriptionService {
     @Override
     public List<IntialDescriptionVo> list(IntialDescriptionDto dto) {
         dto.setIsDelete(IsDeleteEnum.NORMAL.getCode());
-
         if(!CollectionUtils.isEmpty(dto.getTagInfoList())){
             List<Long> ids = tagDescriptionRefMapper.queryByCodeList(dto.getTagInfoList());
             if(CollectionUtils.isEmpty(ids)){
@@ -88,11 +108,12 @@ public class IntialDescriptionServiceImpl implements IntialDescriptionService {
 
         IntialDescription intialDescription = new IntialDescription();
         intialDescription.setId(dto.getId());
+        intialDescription.setUpstreamLaborCompanyId(dto.getUpstreamLaborCompanyId());
         intialDescription.setIntialDescription(dto.getIntialDescription());
         intialDescription.setWechatNumber(dto.getWechatNumber());
 //        intialDescription.setRemark(dto.);
         intialDescription.setGroupAffiliation(dto.getGroupAffiliation());
-        intialDescriptionMapper.updateByPrimaryKeySelective(intialDescription);
+        intialDescriptionMapper.updateById(intialDescription);
         if(!CollectionUtils.isEmpty(dto.getTagInfoList())){
             dto.getTagInfoList().forEach(item ->{
                 TagDescriptionRef tagDescriptionRef = new TagDescriptionRef();
@@ -108,6 +129,11 @@ public class IntialDescriptionServiceImpl implements IntialDescriptionService {
         IntialDescription intialDescription = new IntialDescription();
         intialDescription.setId(dto.getId());
         intialDescription.setIsDelete(IsDeleteEnum.DELETED.getCode());
-        intialDescriptionMapper.updateByPrimaryKeySelective(intialDescription);
+        intialDescriptionMapper.updateById(intialDescription);
+    }
+
+    @Override
+    public IntialDescriptionVo analysisIntialDescrition(IntialDescriptionDto dto) {
+        return jobParseService.parseJobInfo(dto.getIntialDescription());
     }
 }
